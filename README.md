@@ -28,7 +28,6 @@ mCountryPickerView.setOnGettingPhoneNumberListener(new CountryPickerView.OnGetti
              * @param phone number without speshal symbols such as "+", "-" " " etc, for sending to a server
              * @param countryCode code of the country in ISO format (RU, US...)
              */
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onUserSelectedCountry(String phone, String countryCode) {   
                 Log.i(TAG, "+" + PhoneNumberUtils.formatNumber(phone, countryCode));
