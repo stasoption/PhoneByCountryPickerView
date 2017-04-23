@@ -8,7 +8,8 @@ In your XML file, add follow code:
 ```
 <ru.a3technology.countrypicker.View.CountryPickerView
         android:id="@+id/countryPickerView"
-        android:layout_width="match_parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 ```        
 **Next**<br />
 In your activity, add CountryPickerView and override the follow interface
