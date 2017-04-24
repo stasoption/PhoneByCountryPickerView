@@ -4,7 +4,7 @@
 
 # How to use:
 **First**<br />
-In your XML file, add follow code:
+add follow code in your XML file:
 ```
 <ru.a3technology.countrypicker.View.CountryPickerView
         android:id="@+id/countryPickerView"
@@ -12,8 +12,7 @@ In your XML file, add follow code:
         android:layout_height="wrap_content" />
 ```        
 **Next**<br />
-In your activity, add CountryPickerView and override the follow interface
-
+add CountryPickerView and override the follow interface, in your activity.. 
 ```
 mCountryPickerView = (CountryPickerView)findViewById(R.id.countryPickerView);
 mCountryPickerView.setOnGettingPhoneNumberListener(new CountryPickerView.OnGettingPhoneNumberListener() {
