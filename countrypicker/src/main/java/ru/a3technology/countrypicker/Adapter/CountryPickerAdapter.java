@@ -22,7 +22,7 @@ import ru.a3technology.countrypicker.R;
  * Created by Stas on 19.04.2017.
  */
 
-public class CountryPickerAdapter  extends ArrayAdapter<Country>  {
+public class CountryPickerAdapter extends ArrayAdapter<Country>  {
 
     private OnCountryPickedListener mPickedListener;
 
@@ -41,19 +41,17 @@ public class CountryPickerAdapter  extends ArrayAdapter<Country>  {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        // Get the data item for this position
-        final Country country = getItem(position);
-        // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_country_picker_adapter, parent, false);
         }
-        // Lookup view for data population
+
+        final Country country = getItem(position);
         if(country != null){
             LinearLayout layoutCountry = (LinearLayout)convertView.findViewById(R.id.layoutCountry);
             layoutCountry.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    if(event.getAction()==MotionEvent.ACTION_DOWN){
+                    if(event.getAction() == MotionEvent.ACTION_DOWN){
                         if(mPickedListener!=null)
                             mPickedListener.onCountryPicked(country);
                     }
@@ -74,7 +72,4 @@ public class CountryPickerAdapter  extends ArrayAdapter<Country>  {
         }
         return convertView;
     }
-
-
-
 }

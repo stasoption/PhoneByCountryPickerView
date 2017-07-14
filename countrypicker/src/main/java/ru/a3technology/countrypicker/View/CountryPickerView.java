@@ -33,10 +33,12 @@ import ru.a3technology.countrypicker.R;
  * Created by Stas on 18.04.2017.
  */
 
-public class CountryPickerView extends FrameLayout implements View.OnClickListener, CountryPickerAdapter.OnCountryPickedListener{
+public class CountryPickerView extends FrameLayout implements
+        View.OnClickListener,
+        CountryPickerAdapter.OnCountryPickedListener{
 
     private final static String TAG =  CountryPickerView.class.getSimpleName();
-    private OnGettingPhoneNumberListener mPhoneNumberListener;
+    private OnPhoneNumberPickListener mOnPhoneNumberPickListener;
 
     private Locale mLocale;
     private Country mCountry;
@@ -52,7 +54,7 @@ public class CountryPickerView extends FrameLayout implements View.OnClickListen
     private FloatingActionButton btnCountryConfirmValid;
     private FloatingActionButton btnCountryConfirmInValid;
 
-    private static int mTextCounter;
+    private int mTextCounter;
 
 
     public CountryPickerView(Context context) {
@@ -68,8 +70,8 @@ public class CountryPickerView extends FrameLayout implements View.OnClickListen
     }
 
 
-    public void setOnGettingPhoneNumberListener(OnGettingPhoneNumberListener listener){
-        this.mPhoneNumberListener = listener;
+    public void setOnGettingPhoneNumberListener(OnPhoneNumberPickListener listener){
+        this.mOnPhoneNumberPickListener = listener;
     }
 
     public Country getCountry(){
@@ -119,9 +121,7 @@ public class CountryPickerView extends FrameLayout implements View.OnClickListen
         mAnimButtonRemove = AnimationUtils.loadAnimation(getContext(), R.anim.button_remove);
         mAnimButtonShow = AnimationUtils.loadAnimation(getContext(), R.anim.button_show);
         btnChoiceCountry.setOnClickListener(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mPhoneNumberFormattingTextWatcher = new PhoneNumberFormattingTextWatcher(mLocale.getCountry());
-        }
+        mPhoneNumberFormattingTextWatcher = new PhoneNumberFormattingTextWatcher(mLocale.getCountry());
         btnCountryConfirmValid.setOnClickListener(this);
         setTypePhoneFieldParam();
     }
@@ -129,17 +129,19 @@ public class CountryPickerView extends FrameLayout implements View.OnClickListen
     @Override
     public void onClick(View v) {
         int id  = v.getId();
+
         if(id ==  R.id.btnChoiseCountry){
             //calls when the user going to pick some country...
-            if(mPhoneNumberListener!=null)mPhoneNumberListener.onUserStartedChoosingCountry();
             pickUpCountry();
+
+            if(mOnPhoneNumberPickListener !=null)
+                mOnPhoneNumberPickListener.onUserStartedChoosingCountry();
 
         }else if(id == R.id.btnCountryConfirmValid){
             //calls when the user selected the country..
-            if(mPhoneNumberListener!=null)mPhoneNumberListener.onUserSelectedCountry(getPhone(), getCountry().getCode());
+            if(mOnPhoneNumberPickListener !=null) mOnPhoneNumberPickListener.onUserSelectedCountry(getPhone(), getCountry().getCode());
         }
     }
-
 
 
     @Override
@@ -191,7 +193,7 @@ public class CountryPickerView extends FrameLayout implements View.OnClickListen
                             imm.hideSoftInputFromWindow(etCountryPhone.getWindowToken(), 0);
                         }
                     },1);
-                    if(mPhoneNumberListener!=null)mPhoneNumberListener.onUserSelectedCountry(getPhone(), getCountry().getCode());
+                    if(mOnPhoneNumberPickListener !=null) mOnPhoneNumberPickListener.onUserSelectedCountry(getPhone(), getCountry().getCode());
                     return true;
                 }
                 return false;
@@ -199,16 +201,11 @@ public class CountryPickerView extends FrameLayout implements View.OnClickListen
         });
     }
 
-
     private void setCurrentPhoneMask()throws Exception{
         etCountryPhone.setInputType(EditorInfo.TYPE_CLASS_NUMBER | InputType.TYPE_CLASS_PHONE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-
-            etCountryPhone.removeTextChangedListener(mPhoneNumberFormattingTextWatcher);
-            mPhoneNumberFormattingTextWatcher = new PhoneNumberFormattingTextWatcher(mLocale.getCountry());
-            etCountryPhone.addTextChangedListener(mPhoneNumberFormattingTextWatcher);
-        }
+        etCountryPhone.removeTextChangedListener(mPhoneNumberFormattingTextWatcher);
+        mPhoneNumberFormattingTextWatcher = new PhoneNumberFormattingTextWatcher(mLocale.getCountry());
+        etCountryPhone.addTextChangedListener(mPhoneNumberFormattingTextWatcher);
     }
 
     private void setValidButtonStatus(){
@@ -252,7 +249,7 @@ public class CountryPickerView extends FrameLayout implements View.OnClickListen
                 .show();
     }
 
-    public interface OnGettingPhoneNumberListener{
+    public interface OnPhoneNumberPickListener {
         void onUserStartedChoosingCountry();
         void onUserSelectedCountry(String phone, String country_code);
     }

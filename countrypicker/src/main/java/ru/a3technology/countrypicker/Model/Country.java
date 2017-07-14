@@ -276,27 +276,15 @@ public class Country {
     private String dialCode;
     private int flag = -1;
 
+    private Country(){}
+
+
     private Country(String code, String name, String dialCode, int flag) {
         this.code = code;
         this.name = name;
         this.dialCode = dialCode;
         this.flag = flag;
-    }
 
-    private Country(){
-    }
-
-
-    public String getDialCode() {
-        return dialCode;
-    }
-
-    public void setDialCode(String dialCode) {
-        this.dialCode = dialCode;
-    }
-
-    public String getCode() {
-        return code;
     }
 
     public void setCode(String code) {
@@ -305,34 +293,30 @@ public class Country {
             name = new Locale("", code).getDisplayName();
         }
     }
+    public String getCode() {
+        return code;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
     public String getName() {
         return name;
     }
 
-    public int getFlag() {
-        return flag;
+    public void setDialCode(String dialCode) {
+        this.dialCode = dialCode;
+    }
+    public String getDialCode() {
+        return dialCode;
     }
 
     public void setFlag(int flag) {
         this.flag = flag;
     }
-
-    public void loadFlagByCode(Context context) {
-        if (this.flag != -1)
-            return;
-
-        try {
-            this.flag = context.getResources()
-                    .getIdentifier("flag_" + this.code.toLowerCase(Locale.ENGLISH), "drawable",
-                            context.getPackageName());
-        } catch (Exception e) {
-            e.printStackTrace();
-            this.flag = -1;
-        }
+    public int getFlag() {
+        return flag;
     }
-
-
 
 
     public static List<Country> getAllCountries() {
