@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onUserSelectedCountry(String phone, String countryCode) {
                 tvCountry.setText(getCountry(countryCode));
-                tvPhoneNumber.setText("+".concat(PhoneNumberUtils.formatNumber(phone, countryCode)));
+                tvPhoneNumber.setText(phone);
             }
         });
     }

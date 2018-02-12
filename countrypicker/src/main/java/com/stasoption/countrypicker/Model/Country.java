@@ -14,7 +14,7 @@ import com.stasoption.countrypicker.R;
  */
 
 public class Country {
-    private static List<Country> allCountriesList;
+    private static List<Country> sAllCountriesList;
 
     private static final Country[] COUNTRIES = {
             new Country("AD", "Andorra", "+376", R.drawable.flag_ad),
@@ -318,13 +318,13 @@ public class Country {
 
 
     public static List<Country> getAllCountries() {
-        if (allCountriesList == null) {
-            allCountriesList = Arrays.asList(COUNTRIES);
+        if (sAllCountriesList == null) {
+            sAllCountriesList = Arrays.asList(COUNTRIES);
         }
-        return allCountriesList;
+        return sAllCountriesList;
     }
 
-    public static Country getCountryByISO(String countryIsoCode) {
+    private static Country getCountryByISO(String countryIsoCode) {
         countryIsoCode = countryIsoCode.toUpperCase();
         Country c = new Country();
         c.setCode(countryIsoCode);
@@ -341,7 +341,6 @@ public class Country {
         String countryIsoCode = locale.getCountry();
         return Country.getCountryByISO(countryIsoCode);
     }
-
 
     private static class ISOCodeComparator implements Comparator<Country> {
         @Override

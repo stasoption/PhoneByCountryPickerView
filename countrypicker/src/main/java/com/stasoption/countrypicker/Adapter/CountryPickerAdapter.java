@@ -1,5 +1,6 @@
 package com.stasoption.countrypicker.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ public class CountryPickerAdapter extends ArrayAdapter<Country>  {
         void onCountryPicked(Country mCountry);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
