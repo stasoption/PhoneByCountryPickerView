@@ -1,8 +1,7 @@
-package ru.a3technology.countrypicker.View;
+package com.stasoption.countrypicker.View;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -26,9 +25,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import ru.a3technology.countrypicker.Adapter.CountryPickerAdapter;
-import ru.a3technology.countrypicker.Model.Country;
-import ru.a3technology.countrypicker.R;
+import com.stasoption.countrypicker.Adapter.CountryPickerAdapter;
+import com.stasoption.countrypicker.Model.Country;
+import com.stasoption.countrypicker.R;
 /**
  * Created by Stas on 18.04.2017.
  */

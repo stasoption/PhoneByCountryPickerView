@@ -1,4 +1,4 @@
-package ru.a3technology.countrypickerview;
+package com.stasoption.countrypickerview;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="ru.a3technology.countrypickerview.MainActivity"
+    tools:context="com.stasoption.countrypickerview.MainActivity"
     android:paddingTop="36dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
@@ -23,7 +23,7 @@
         android:layout_marginTop="32dp"
         android:gravity="center"/>
 
-    <ru.a3technology.countrypicker.View.CountryPickerView
+    <com.stasoption.countrypicker.View.CountryPickerView
         android:id="@+id/countryPickerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

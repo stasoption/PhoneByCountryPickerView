@@ -1,4 +1,4 @@
-package ru.a3technology.countrypickerview;
+package com.stasoption.countrypickerview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.telephony.PhoneNumberUtils;
 import android.widget.TextView;
 
 import java.util.Locale;
-import ru.a3technology.countrypicker.View.CountryPickerView;
+import com.stasoption.countrypicker.View.CountryPickerView;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = MainActivity.class.getSimpleName();

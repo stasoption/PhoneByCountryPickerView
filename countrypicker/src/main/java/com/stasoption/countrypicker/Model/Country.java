@@ -1,7 +1,5 @@
-package ru.a3technology.countrypicker.Model;
+package com.stasoption.countrypicker.Model;
 
-import android.content.Context;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import java.util.Arrays;
@@ -9,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-import ru.a3technology.countrypicker.R;
+import com.stasoption.countrypicker.R;
 
 /**
  * Created by Stas on 18.04.2017.

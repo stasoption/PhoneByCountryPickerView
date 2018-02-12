@@ -1,4 +1,4 @@
-package ru.a3technology.countrypicker;
+package com.stasoption.countrypicker;
 
 import org.junit.Test;
 

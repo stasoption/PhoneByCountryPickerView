@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 
-          package="ru.a3technology.countrypicker"
+          package="com.stasoption.countrypicker"
 >
 
     <application android:allowBackup="true"

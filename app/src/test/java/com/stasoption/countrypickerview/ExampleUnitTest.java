@@ -1,4 +1,4 @@
-package ru.a3technology.countrypickerview;
+package com.stasoption.countrypickerview;
 
 import org.junit.Test;
 

@@ -1,8 +1,7 @@
-package ru.a3technology.countrypicker.Adapter;
+package com.stasoption.countrypicker.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,8 +14,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import ru.a3technology.countrypicker.Model.Country;
-import ru.a3technology.countrypicker.R;
+import com.stasoption.countrypicker.Model.Country;
+import com.stasoption.countrypicker.R;
 
 /**
  * Created by Stas on 19.04.2017.
