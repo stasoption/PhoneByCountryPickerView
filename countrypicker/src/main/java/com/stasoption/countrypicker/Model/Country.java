@@ -1,5 +1,6 @@
 package com.stasoption.countrypicker.Model;
 
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import java.util.Arrays;
@@ -324,6 +325,7 @@ public class Country {
         return sAllCountriesList;
     }
 
+    @Nullable
     private static Country getCountryByISO(String countryIsoCode) {
         countryIsoCode = countryIsoCode.toUpperCase();
         Country c = new Country();
@@ -337,9 +339,10 @@ public class Country {
         }
     }
 
+    @Nullable
     public static Country getCountryByLocale(Locale locale) {
         String countryIsoCode = locale.getCountry();
-        return Country.getCountryByISO(countryIsoCode);
+        return getCountryByISO(countryIsoCode);
     }
 
     private static class ISOCodeComparator implements Comparator<Country> {

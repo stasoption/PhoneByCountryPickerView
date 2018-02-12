@@ -19,7 +19,7 @@ import com.stasoption.countrypicker.Model.Country;
 import com.stasoption.countrypicker.R;
 
 /**
- * Created by Stas on 19.04.2017.
+ *  @author Stas Averin
  */
 
 public class CountryPickerAdapter extends ArrayAdapter<Country>  {
