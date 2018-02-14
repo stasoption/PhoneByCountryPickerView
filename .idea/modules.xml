@@ -5,10 +5,13 @@
       <module fileurl="file://C:\Users\sv1av\Documents\PhoneByCountryPickerView\CountryPickerView.iml" filepath="C:\Users\sv1av\Documents\PhoneByCountryPickerView\CountryPickerView.iml" />
       <module fileurl="file://$PROJECT_DIR$/PhoneByCountryPickerView.iml" filepath="$PROJECT_DIR$/PhoneByCountryPickerView.iml" />
       <module fileurl="file://C:\Users\sv1av\Documents\PhoneByCountryPickerView\PhoneByCountryPickerView.iml" filepath="C:\Users\sv1av\Documents\PhoneByCountryPickerView\PhoneByCountryPickerView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PhoneByCountryPickerView.iml" filepath="$PROJECT_DIR$/PhoneByCountryPickerView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\sv1av\Documents\PhoneByCountryPickerView\app\app.iml" filepath="C:\Users\sv1av\Documents\PhoneByCountryPickerView\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/countrypicker/countrypicker.iml" filepath="$PROJECT_DIR$/countrypicker/countrypicker.iml" />
       <module fileurl="file://C:\Users\sv1av\Documents\PhoneByCountryPickerView\countrypicker\countrypicker.iml" filepath="C:\Users\sv1av\Documents\PhoneByCountryPickerView\countrypicker\countrypicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/countrypicker/countrypicker.iml" filepath="$PROJECT_DIR$/countrypicker/countrypicker.iml" />
     </modules>
   </component>
 </project>
