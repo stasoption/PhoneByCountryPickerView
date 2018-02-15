@@ -5,8 +5,8 @@
         <attr name="backgroundColorCountryPicker" format="color"/>
         <attr name="backgroundDrawableCountryPicker" format="integer"/>
 
-        <attr name="colorValidButtonCountryPicker" format="color"/>
-        <attr name="colorInvalidButtonCountryPicker" format="color"/>
+        <attr name="colorValidButtonCountryPicker" format="string"/>
+        <attr name="colorInvalidButtonCountryPicker" format="string"/>
 
         <attr name="iconValidButtonCountryPicker" format="integer"/>
         <attr name="iconInvalidButtonCountryPicker" format="integer"/>

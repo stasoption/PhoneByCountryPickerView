@@ -10,8 +10,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -21,7 +19,8 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="true">
 
             <TextView
                 android:id="@+id/tvCountryCode"
@@ -62,6 +61,8 @@
             android:id="@+id/btnCountryConfirmValid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="36dip"
+            android:maxHeight="36dip"
             android:tint="@android:color/holo_green_dark"
             android:src="@android:drawable/ic_menu_send"
             tools:ignore="ContentDescription"/>
@@ -70,6 +71,8 @@
             android:id="@+id/btnCountryConfirmInValid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="36dip"
+            android:maxHeight="36dip"
             android:tint="@android:color/darker_gray"
             android:src="@android:drawable/ic_menu_send"
             tools:ignore="ContentDescription"/>

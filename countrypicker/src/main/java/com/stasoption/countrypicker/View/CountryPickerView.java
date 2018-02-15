@@ -3,9 +3,12 @@ package com.stasoption.countrypicker.View;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.InputType;
@@ -131,17 +134,26 @@ public class CountryPickerView extends FrameLayout implements
                     if(bgColor != 0)
                         mMainLayout.setBackgroundColor(bgColor);
 
-                    int bgDrawable = typedArray.getInteger(R.styleable.CountryPickerView_backgroundDrawableCountryPicker, 0);
-                    if(bgDrawable != 0)
-                        mMainLayout.setBackground(context.getDrawable(bgDrawable));
+                    Drawable bgDrawable = typedArray.getDrawable(R.styleable.CountryPickerView_backgroundDrawableCountryPicker);
+                    if(bgDrawable != null)
+                        mMainLayout.setBackground(bgDrawable);
 
-                    int iconValidButton = typedArray.getInteger(R.styleable.CountryPickerView_iconValidButtonCountryPicker, 0);
-                    if(iconValidButton != 0)
-                        btnCountryConfirmValid.setImageResource(iconValidButton);
+                    String colorValidButton = typedArray.getString(R.styleable.CountryPickerView_colorValidButtonCountryPicker);
+                    if(colorValidButton != null){
+                        btnCountryConfirmValid.setColorFilter(Color.parseColor(colorValidButton));
+                    }
+                    String colorInvalidButton = typedArray.getString(R.styleable.CountryPickerView_colorInvalidButtonCountryPicker);
+                    if(colorInvalidButton != null)
+                        btnCountryConfirmInValid.setColorFilter(Color.parseColor(colorInvalidButton));
 
-                    int iconInvalidButton = typedArray.getInteger(R.styleable.CountryPickerView_iconInvalidButtonCountryPicker, 0);
-                    if(iconInvalidButton != 0)
-                        btnCountryConfirmInValid.setImageResource(iconInvalidButton);
+                    Drawable iconValidButton = typedArray.getDrawable(R.styleable.CountryPickerView_iconValidButtonCountryPicker);
+                    if(iconValidButton != null){
+                        btnCountryConfirmValid.setImageDrawable(iconValidButton);
+                    }
+
+                    Drawable iconInvalidButton = typedArray.getDrawable(R.styleable.CountryPickerView_iconInvalidButtonCountryPicker);
+                    if(iconInvalidButton != null)
+                        btnCountryConfirmInValid.setImageDrawable(iconInvalidButton);
 
                     int textSize = typedArray.getInteger(R.styleable.CountryPickerView_textSizeCountryPicker, 0);
                     if(textSize != 0)
