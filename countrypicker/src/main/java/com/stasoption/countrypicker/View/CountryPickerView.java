@@ -52,8 +52,8 @@ public class CountryPickerView extends FrameLayout implements
     private ImageView ivCountryFlag;
     private PhoneInputView etCountryPhone;
 
-    private FloatingActionButton btnCountryConfirmValid;
-    private FloatingActionButton btnCountryConfirmInValid;
+    private ImageView btnCountryConfirmValid;
+    private ImageView btnCountryConfirmInValid;
 
     private int mTextCounter;
 
@@ -170,7 +170,7 @@ public class CountryPickerView extends FrameLayout implements
         mPhoneNumberFormattingTextWatcher = new PhoneNumberFormatting(mLocale.getCountry());
         etCountryPhone.addTextChangedListener(mPhoneNumberFormattingTextWatcher);
     }
-    
+
     private void checkButton(){
         if(etCountryPhone.getText().length() == 1 && etCountryPhone.getText().length() > mTextCounter){
             btnCountryConfirmInValid.startAnimation(mAnimButtonRemove);

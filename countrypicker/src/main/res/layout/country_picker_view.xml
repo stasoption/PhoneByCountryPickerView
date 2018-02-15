@@ -2,6 +2,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -57,26 +58,21 @@
             android:maxLength="18"
             android:textSize="16sp"/>
 
-
-        <android.support.design.widget.FloatingActionButton
+        <ImageView
             android:id="@+id/btnCountryConfirmValid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="5dp"
+            android:tint="@android:color/holo_green_dark"
             android:src="@android:drawable/ic_menu_send"
-            android:tint="@android:color/white"
-            app:backgroundTint="@color/colorAccent"
-            app:fabSize="mini"/>
+            tools:ignore="ContentDescription"/>
 
-        <android.support.design.widget.FloatingActionButton
+        <ImageView
             android:id="@+id/btnCountryConfirmInValid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="5dp"
+            android:tint="@android:color/darker_gray"
             android:src="@android:drawable/ic_menu_send"
-            android:tint="@android:color/white"
-            app:backgroundTint="@android:color/darker_gray"
-            app:fabSize="mini"/>
+            tools:ignore="ContentDescription"/>
 
     </LinearLayout>
 
