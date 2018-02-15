@@ -2,6 +2,7 @@ package com.stasoption.countrypicker.View;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -47,6 +48,7 @@ public class CountryPickerView extends FrameLayout implements
     private Animation mAnimButtonRemove;
     private Animation mAnimButtonShow;
 
+    private FrameLayout mMainLayout;
     private LinearLayout btnChoiceCountry;
     private TextView tvCountryCode;
     private ImageView ivCountryFlag;
@@ -59,22 +61,22 @@ public class CountryPickerView extends FrameLayout implements
 
     public CountryPickerView(@NonNull Context context) {
         super(context);
-        init(context);
+        init(context, null);
     }
 
     public CountryPickerView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init(context);
+        init(context, attrs);
     }
 
     public CountryPickerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init(context, attrs);
     }
 
     public CountryPickerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        init(context);
+        init(context, attrs);
     }
 
 
@@ -96,12 +98,13 @@ public class CountryPickerView extends FrameLayout implements
         return removeNotDigits(code.concat(number));
     }
 
-    private void init(@NonNull Context context){
+    private void init(@NonNull Context context, @Nullable AttributeSet attrs){
         LayoutInflater.from(getContext()).inflate(R.layout.country_picker_view, this);
         try {
             mLocale = Locale.getDefault();
             mCountry = Country.getCountryByLocale(mLocale);
 
+            mMainLayout = findViewById(R.id.mainLayout);
             btnChoiceCountry = findViewById(R.id.btnChoiseCountry);
             tvCountryCode = findViewById(R.id.tvCountryCode);
             etCountryPhone = findViewById(R.id.etCountryPhone);
@@ -119,15 +122,46 @@ public class CountryPickerView extends FrameLayout implements
                         mOnPhoneNumberPickListener.onUserStartPickCountry();
                 }
             });
-            etCountryPhone.setInputType(EditorInfo.TYPE_CLASS_NUMBER | InputType.TYPE_CLASS_PHONE);
 
+
+            if(attrs != null){
+                TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CountryPickerView, 0, 0);
+                if(typedArray != null){
+                    int bgColor = typedArray.getColor(R.styleable.CountryPickerView_backgroundColorCountryPicker, 0);
+                    if(bgColor != 0)
+                        mMainLayout.setBackgroundColor(bgColor);
+
+                    int bgDrawable = typedArray.getInteger(R.styleable.CountryPickerView_backgroundDrawableCountryPicker, 0);
+                    if(bgDrawable != 0)
+                        mMainLayout.setBackground(context.getDrawable(bgDrawable));
+
+                    int iconValidButton = typedArray.getInteger(R.styleable.CountryPickerView_iconValidButtonCountryPicker, 0);
+                    if(iconValidButton != 0)
+                        btnCountryConfirmValid.setImageResource(iconValidButton);
+
+                    int iconInvalidButton = typedArray.getInteger(R.styleable.CountryPickerView_iconInvalidButtonCountryPicker, 0);
+                    if(iconInvalidButton != 0)
+                        btnCountryConfirmInValid.setImageResource(iconInvalidButton);
+
+                    int textSize = typedArray.getInteger(R.styleable.CountryPickerView_textSizeCountryPicker, 0);
+                    if(textSize != 0)
+                        etCountryPhone.setTextSize(textSize);
+                    int textColor = typedArray.getColor(R.styleable.CountryPickerView_textColorCountryPicker, 0);
+                    if(textColor != 0){
+                        etCountryPhone.setTextColor(textColor);
+                        tvCountryCode.setTextColor(textColor);
+                    }
+                }
+            }
+
+            etCountryPhone.setInputType(EditorInfo.TYPE_CLASS_NUMBER | InputType.TYPE_CLASS_PHONE);
             btnChoiceCountry.setOnClickListener(this);
             btnCountryConfirmValid.setOnClickListener(this);
 
             checkButton();
             update();
-        } catch (Exception mE) {
-            mE.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.stasoption.countrypickerview.MainActivity"
     android:paddingTop="36dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
-
-
 
 
     <TextView
@@ -27,7 +26,9 @@
         android:id="@+id/countryPickerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"/>
+        android:paddingTop="8dp"
+        app:textColorCountryPicker="#3F51B5"
+        app:textSizeCountryPicker="18"/>
 
 
     <TextView

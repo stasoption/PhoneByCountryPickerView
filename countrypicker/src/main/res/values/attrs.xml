@@ -5,5 +5,14 @@
         <attr name="backgroundColorCountryPicker" format="color"/>
         <attr name="backgroundDrawableCountryPicker" format="integer"/>
 
+        <attr name="colorValidButtonCountryPicker" format="color"/>
+        <attr name="colorInvalidButtonCountryPicker" format="color"/>
+
+        <attr name="iconValidButtonCountryPicker" format="integer"/>
+        <attr name="iconInvalidButtonCountryPicker" format="integer"/>
+
+        <attr name="textSizeCountryPicker" format="integer"/>
+        <attr name="textColorCountryPicker" format="color"/>
+
     </declare-styleable>
 </resources>
