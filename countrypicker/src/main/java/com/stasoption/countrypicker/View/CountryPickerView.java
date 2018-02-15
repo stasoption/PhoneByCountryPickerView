@@ -7,18 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,6 +25,8 @@ import java.util.Locale;
 import com.stasoption.countrypicker.Adapter.CountryPickerAdapter;
 import com.stasoption.countrypicker.Model.Country;
 import com.stasoption.countrypicker.R;
+
+import rx.functions.Action0;
 
 /**
  *  @author Stas Averin
@@ -46,14 +43,14 @@ public class CountryPickerView extends FrameLayout implements
 
     private Locale mLocale;
     private Country mCountry;
-    private PhoneNumberFormattingTextWatcher mPhoneNumberFormattingTextWatcher;
+    private PhoneNumberFormatting mPhoneNumberFormattingTextWatcher;
     private Animation mAnimButtonRemove;
     private Animation mAnimButtonShow;
 
     private LinearLayout btnChoiceCountry;
     private TextView tvCountryCode;
     private ImageView ivCountryFlag;
-    private EditText etCountryPhone;
+    private PhoneInputView etCountryPhone;
 
     private FloatingActionButton btnCountryConfirmValid;
     private FloatingActionButton btnCountryConfirmInValid;
@@ -115,17 +112,20 @@ public class CountryPickerView extends FrameLayout implements
             mAnimButtonRemove = AnimationUtils.loadAnimation(getContext(), R.anim.button_remove);
             mAnimButtonShow = AnimationUtils.loadAnimation(getContext(), R.anim.button_show);
 
+            etCountryPhone.setSendAction(new Action0() {
+                @Override
+                public void call() {
+                    if(mOnPhoneNumberPickListener !=null)
+                        mOnPhoneNumberPickListener.onUserStartPickCountry();
+                }
+            });
             etCountryPhone.setInputType(EditorInfo.TYPE_CLASS_NUMBER | InputType.TYPE_CLASS_PHONE);
-
-            mPhoneNumberFormattingTextWatcher = new PhoneNumberFormattingTextWatcher(mLocale.getCountry());
 
             btnChoiceCountry.setOnClickListener(this);
             btnCountryConfirmValid.setOnClickListener(this);
 
             checkButton();
-            setTypeParam();
-            setCountry();
-            setPhoneMask();
+            update();
         } catch (Exception mE) {
             mE.printStackTrace();
         }
@@ -134,18 +134,17 @@ public class CountryPickerView extends FrameLayout implements
     @Override
     public void onClick(View v) {
         int id  = v.getId();
-
         if(id ==  R.id.btnChoiseCountry){
             //calls when the user going to pick some country...
             pickUpCountry();
 
             if(mOnPhoneNumberPickListener !=null)
-                mOnPhoneNumberPickListener.onUserStartedChoosingCountry();
+                mOnPhoneNumberPickListener.onUserStartPickCountry();
 
         }else if(id == R.id.btnCountryConfirmValid){
             //calls when the user selected the country..
             if(mOnPhoneNumberPickListener !=null)
-                mOnPhoneNumberPickListener.onUserSelectedCountry(getPhone(), getCountry().getCode());
+                mOnPhoneNumberPickListener.onUserPickedCountry(getPhone(), getCountry().getCode());
         }
     }
 
@@ -155,72 +154,31 @@ public class CountryPickerView extends FrameLayout implements
         try {
             mCountry = country;
             mLocale = new Locale("", country.getCode());
-            setCountry();
-            setPhoneMask();
+            update();
         } catch (Exception mE) {
             mE.printStackTrace();
         }
     }
 
-    private void setCountry()throws Exception{
-        /*check current user location*/
+
+    private void update()throws Exception{
         if(mCountry!=null){
             tvCountryCode.setText(mCountry.getDialCode());
             ivCountryFlag.setImageResource(mCountry.getFlag());
         }
-    }
-
-    private void setTypeParam()throws Exception{
-        etCountryPhone.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                checkButton();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
-
-        etCountryPhone.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    etCountryPhone.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                            if (imm != null) {
-                                imm.hideSoftInputFromWindow(etCountryPhone.getWindowToken(), 0);
-                            }
-                        }
-                    },1);
-                    if(mOnPhoneNumberPickListener !=null)
-                        mOnPhoneNumberPickListener.onUserSelectedCountry(getPhone(), getCountry().getCode());
-                    return true;
-                }
-                return false;
-            }
-        });
-    }
-
-    private void setPhoneMask()throws Exception{
-
         etCountryPhone.removeTextChangedListener(mPhoneNumberFormattingTextWatcher);
-        mPhoneNumberFormattingTextWatcher = new PhoneNumberFormattingTextWatcher(mLocale.getCountry());
+        mPhoneNumberFormattingTextWatcher = new PhoneNumberFormatting(mLocale.getCountry());
         etCountryPhone.addTextChangedListener(mPhoneNumberFormattingTextWatcher);
     }
-
+    
     private void checkButton(){
-        if(etCountryPhone.getText().length()== 1 && etCountryPhone.getText().length() > mTextCounter){
+        if(etCountryPhone.getText().length() == 1 && etCountryPhone.getText().length() > mTextCounter){
             btnCountryConfirmInValid.startAnimation(mAnimButtonRemove);
             btnCountryConfirmInValid.setVisibility(GONE);
             btnCountryConfirmValid.setVisibility(VISIBLE);
             btnCountryConfirmValid.startAnimation(mAnimButtonShow);
 
-        }else if(etCountryPhone.getText().length()==0){
+        }else if(etCountryPhone.getText().length() == 0){
             btnCountryConfirmValid.startAnimation(mAnimButtonRemove);
             btnCountryConfirmValid.setVisibility(GONE);
             btnCountryConfirmInValid.setVisibility(VISIBLE);
@@ -244,7 +202,7 @@ public class CountryPickerView extends FrameLayout implements
                     }
                 })
 
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getContext().getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -264,9 +222,24 @@ public class CountryPickerView extends FrameLayout implements
 
 
     public interface OnPhoneNumberPickListener {
-        void onUserStartedChoosingCountry();
 
-        void onUserSelectedCountry(String phone, String country_code);
+        void onUserStartPickCountry();
 
+        void onUserPickedCountry(String phone, String country_code);
+
+    }
+
+
+    class PhoneNumberFormatting extends PhoneNumberFormattingTextWatcher {
+
+        PhoneNumberFormatting(String countryCode) {
+            super(countryCode);
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            super.onTextChanged(s, start, before, count);
+            checkButton();
+        }
     }
 }

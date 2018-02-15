@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         mCountryPickerView.setOnGettingPhoneNumberListener(new CountryPickerView.OnPhoneNumberPickListener() {
             /*method called before the user going to select a country from the countries list...*/
             @Override
-            public void onUserStartedChoosingCountry(){
+            public void onUserStartPickCountry(){
                 tvPhoneNumber.setText("");
                 tvCountry.setText("");
             }
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
              * @param countryCode code of the country in ISO format (RU, US...)
              */
             @Override
-            public void onUserSelectedCountry(String phone, String countryCode) {
+            public void onUserPickedCountry(String phone, String countryCode) {
                 tvCountry.setText(getCountry(countryCode));
                 tvPhoneNumber.setText(phone);
             }

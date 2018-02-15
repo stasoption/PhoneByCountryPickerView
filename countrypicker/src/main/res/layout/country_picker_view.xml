@@ -44,11 +44,12 @@
         </LinearLayout>
 
 
-        <EditText
+        <com.stasoption.countrypicker.View.PhoneInputView
             android:id="@+id/etCountryPhone"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_weight="1"
             android:background="@android:color/white"
             android:focusable="true"

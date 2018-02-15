@@ -20,7 +20,7 @@ mCountryPickerView.setOnGettingPhoneNumberListener(new CountryPickerView.OnGetti
              * the method called before the user going to select a country from the countries list...
              */
             @Override
-            public void onUserStartedChoosingCountry(){
+            public void onUserStartPickCountry(){
                 //do something...
             }
 
@@ -30,7 +30,7 @@ mCountryPickerView.setOnGettingPhoneNumberListener(new CountryPickerView.OnGetti
              * @param countryCode code of the country in ISO format (RU, US...)
              */
             @Override
-            public void onUserSelectedCountry(String phone, String countryCode) {   
+            public void onUserPickedCountry(String phone, String countryCode) {
                 Log.i(TAG, "+" + PhoneNumberUtils.formatNumber(phone, countryCode));
             }
 
