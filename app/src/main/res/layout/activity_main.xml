@@ -12,7 +12,8 @@
     android:paddingRight="16dp"
     android:focusable="true"
     android:clickable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <TextView
@@ -26,23 +27,23 @@
         android:paddingBottom="16dp"
         android:gravity="center"/>
 
-    <com.stasoption.countrypicker.View.CountryPickerView
-        android:id="@+id/countryPickerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
     <!--<com.stasoption.countrypicker.View.CountryPickerView-->
         <!--android:id="@+id/countryPickerView"-->
         <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:backgroundDrawableCountryPicker="@drawable/bg_phone_picker"-->
-        <!--app:colorValidButtonCountryPicker="#FFEB3B"-->
-        <!--app:colorInvalidButtonCountryPicker="#F44336"-->
-        <!--app:iconValidButtonCountryPicker="@drawable/ic_forward_swg"-->
-        <!--app:iconInvalidButtonCountryPicker="@drawable/ic_clear_swg"-->
-        <!--app:textColorCountryPicker="#FFEB3B"-->
-        <!--app:textSizeCountryPicker="18"-->
-        <!--app:paddingCountryPicker="16"/>-->
+        <!--android:layout_height="wrap_content"/>-->
+
+    <com.stasoption.countrypicker.View.CountryPickerView
+        android:id="@+id/countryPickerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backgroundDrawableCountryPicker="@drawable/bg_phone_picker"
+        app:colorValidButtonCountryPicker="#FFEB3B"
+        app:colorInvalidButtonCountryPicker="#F44336"
+        app:iconValidButtonCountryPicker="@drawable/ic_forward_swg"
+        app:iconInvalidButtonCountryPicker="@drawable/ic_clear_swg"
+        app:textColorCountryPicker="#FFEB3B"
+        app:textSizeCountryPicker="18"
+        app:paddingCountryPicker="16"/>
 
 
     <TextView
