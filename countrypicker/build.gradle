@@ -1,4 +1,14 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.8.0'
+    }
+}
 
 android {
     compileSdkVersion 26
@@ -42,4 +52,14 @@ dependencies {
     implementation 'io.reactivex:rxjava:1.3.0'
 
     testCompile 'junit:junit:4.12'
+}
+
+publish {
+    userOrg = 'whitepyramid'
+    groupId = 'com.github.stasoption'
+    artifactId = 'countrypickerview'
+    publishVersion = '1.0.1'
+    desc = 'Phone input view (multi country)'
+    licences = ['MIT']
+    website = 'https://github.com/stasoption/PhoneByCountryPickerView'
 }
