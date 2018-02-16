@@ -26,15 +26,15 @@
         android:id="@+id/countryPickerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:paddingTop="8dp"
         app:backgroundDrawableCountryPicker="@drawable/bg_phone_picker"
         app:colorValidButtonCountryPicker="#CDDC39"
         app:colorInvalidButtonCountryPicker="#F44336"
         app:iconValidButtonCountryPicker="@drawable/ic_forward_swg"
         app:iconInvalidButtonCountryPicker="@drawable/ic_clear_swg"
-        app:textColorCountryPicker="#3F51B5"
-        app:textSizeCountryPicker="18"/>
+        app:textColorCountryPicker="#FFEB3B"
+        app:textSizeCountryPicker="18"
+        app:paddingCountryPicker="16"/>
 
 
     <TextView

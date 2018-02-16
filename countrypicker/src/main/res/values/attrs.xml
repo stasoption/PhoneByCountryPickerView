@@ -14,5 +14,6 @@
         <attr name="textSizeCountryPicker" format="integer"/>
         <attr name="textColorCountryPicker" format="color"/>
 
+        <attr name="paddingCountryPicker" format="integer"/>
     </declare-styleable>
 </resources>

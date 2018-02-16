@@ -55,6 +55,7 @@ public class CountryPickerView extends FrameLayout implements
     private LinearLayout btnChoiceCountry;
     private TextView tvCountryCode;
     private ImageView ivCountryFlag;
+    private ImageView ivArrowDropDown;
     private PhoneInputView etCountryPhone;
 
     private ImageView btnCountryConfirmValid;
@@ -112,6 +113,7 @@ public class CountryPickerView extends FrameLayout implements
             tvCountryCode = findViewById(R.id.tvCountryCode);
             etCountryPhone = findViewById(R.id.etCountryPhone);
             ivCountryFlag = findViewById(R.id.ivCountryFlag);
+            ivArrowDropDown = findViewById(R.id.ic_arrow_drop_down);
             btnCountryConfirmValid = findViewById(R.id.btnCountryConfirmValid);
             btnCountryConfirmInValid = findViewById(R.id.btnCountryConfirmInValid);
 
@@ -156,17 +158,25 @@ public class CountryPickerView extends FrameLayout implements
                         btnCountryConfirmInValid.setImageDrawable(iconInvalidButton);
 
                     int textSize = typedArray.getInteger(R.styleable.CountryPickerView_textSizeCountryPicker, 0);
-                    if(textSize != 0)
+                    if(textSize != 0){
                         etCountryPhone.setTextSize(textSize);
+                        tvCountryCode.setTextSize(textSize);
+                    }
+
                     int textColor = typedArray.getColor(R.styleable.CountryPickerView_textColorCountryPicker, 0);
                     if(textColor != 0){
                         etCountryPhone.setTextColor(textColor);
                         tvCountryCode.setTextColor(textColor);
+                        ivArrowDropDown.setColorFilter(textColor);
+                    }
+
+                    int padding = paddingDp(context, typedArray.getInteger(R.styleable.CountryPickerView_paddingCountryPicker, 0));
+                    if(padding != 0){
+                        mMainLayout.setPadding(padding, padding, padding, padding);
                     }
                 }
             }
 
-            etCountryPhone.setInputType(EditorInfo.TYPE_CLASS_NUMBER | InputType.TYPE_CLASS_PHONE);
             btnChoiceCountry.setOnClickListener(this);
             btnCountryConfirmValid.setOnClickListener(this);
 
@@ -287,5 +297,10 @@ public class CountryPickerView extends FrameLayout implements
             super.onTextChanged(s, start, before, count);
             checkButton();
         }
+    }
+
+    private static int paddingDp(Context context, int value){
+        float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (value * scale + 0.5f);
     }
 }
