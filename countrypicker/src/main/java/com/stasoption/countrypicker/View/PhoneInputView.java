@@ -51,7 +51,7 @@ public class PhoneInputView extends android.support.v7.widget.AppCompatEditText 
     private void init(){
         mAppCompatEditText = this;
         setInputType(InputType.TYPE_CLASS_PHONE);
-        setKeyListener(DigitsKeyListener.getInstance("0123456789-"));
+        setKeyListener(DigitsKeyListener.getInstance("0123456789- "));
 
         setOnFocusChangeListener(this);
         setOnEditorActionListener(this);
