@@ -1,38 +1,103 @@
-# PhoneByCountryPickerView
+# PhoneByCountryPickerView for Android
 
-![alt tag](https://68.media.tumblr.com/ae3c238d9253d7257cf6313053c466da/tumblr_inline_oor57a9XtV1u3v231_500.gif)
+## Demo
 
-# How to use:
-**First**<br />
-add follow code in your XML file:
+![alt tag](https://media.giphy.com/media/3003DyRvjOqRSNq6Jh/giphy.gif)
+
+When first start, PhoneByCountryPickerView automatically initialized default phone locale. Also, you can pick other country and add some custom parameters such as background, text color, icons etc.
+
+![alt tag](https://media.giphy.com/media/2tKbmvoldOWjrpIAWW/giphy.gif)
+
+## Usage
+
+**In your XML file**<br />
+
 ```
-<ru.a3technology.countrypicker.View.CountryPickerView
+    <com.stasoption.countrypicker.View.CountryPickerView
         android:id="@+id/countryPickerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-```        
-**Next**<br />
-add CountryPickerView and override the follow interface, in your activity.. 
+        android:layout_height="wrap_content"/>
 ```
-mCountryPickerView = (CountryPickerView)findViewById(R.id.countryPickerView);
-mCountryPickerView.setOnGettingPhoneNumberListener(new CountryPickerView.OnGettingPhoneNumberListener() {
-            /**
-             * the method called before the user going to select a country from the countries list...
-             */
+
+**In your activity**<br />
+
+```
+        CountryPickerView countryPickerView = findViewById(R.id.countryPickerView);
+        countryPickerView.setOnGettingPhoneNumberListener(new CountryPickerView.OnPhoneNumberPickListener() {
+            /*called before the user going to select a country from the countries list...*/
             @Override
             public void onUserStartPickCountry(){
-                //do something...
+                mPhoneNumber.setText("");
+                mCountry.setText("");
             }
 
             /**
-             * the method calls when the user selected a country from the countries list
-             * @param phone number without speshal symbols such as "+", "-" " " etc, for sending to a server
+             * called when the user selected a country from the countries list
+             * @param phone number without special symbols such as "+", "-" " " etc
              * @param countryCode code of the country in ISO format (RU, US...)
              */
             @Override
             public void onUserPickedCountry(String phone, String countryCode) {
-                Log.i(TAG, "+" + PhoneNumberUtils.formatNumber(phone, countryCode));
+                mMainLayout.requestFocus();
+                mCountry.setText(getCountry(countryCode));
+                mPhoneNumber.setText(phone);
             }
-
         });
 ```
+
+**Custom parameters**<br />
+
+```
+    <com.stasoption.countrypicker.View.CountryPickerView
+        android:id="@+id/countryPickerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backgroundDrawableCountryPicker="@drawable/bg_phone_picker"
+        app:colorValidButtonCountryPicker="#FFEB3B"
+        app:colorInvalidButtonCountryPicker="#F44336"
+        app:iconValidButtonCountryPicker="@drawable/ic_forward_swg"
+        app:iconInvalidButtonCountryPicker="@drawable/ic_clear_swg"
+        app:textColorCountryPicker="#FFEB3B"
+        app:textSizeCountryPicker="18"
+        app:paddingCountryPicker="16"/>
+```    
+
+## How to add
+
+**Gradle**<br />
+
+```
+      dependencies {
+            
+      }
+```
+
+**Maven**<br />
+
+```
+
+```
+
+## License
+
+      The MIT License (MIT)
+      Copyright (c) 2017 Stas Averin
+
+      Permission is hereby granted, free of charge, to any person obtaining a copy
+      of this software and associated documentation files (the "Software"), to deal
+      in the Software without restriction, including without limitation the rights
+      to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+      copies of the Software, and to permit persons to whom the Software is
+      furnished to do so, subject to the following conditions:
+
+      The above copyright notice and this permission notice shall be included in all
+      copies or substantial portions of the Software.
+
+      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+      LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+      OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+      SOFTWARE.
+
