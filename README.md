@@ -8,6 +8,8 @@ When first start, PhoneByCountryPickerView automatically initialized default pho
 
 ![alt tag](https://media.giphy.com/media/i4dwZjwUT68szW5Tl3/giphy.gif)
 
+![alt tag](https://media.giphy.com/media/cPJUasaQYUy1BBlKyG/giphy.gif)
+
 ![alt tag](https://media.giphy.com/media/2tKbmvoldOWjrpIAWW/giphy.gif)
 
 ## Usage
