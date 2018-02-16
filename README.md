@@ -6,6 +6,8 @@
 
 When first start, PhoneByCountryPickerView automatically initialized default phone locale. Also, you can pick other country and add some custom parameters such as background, text color, icons etc.
 
+![alt tag](https://media.giphy.com/media/i4dwZjwUT68szW5Tl3/giphy.gif)
+
 ![alt tag](https://media.giphy.com/media/2tKbmvoldOWjrpIAWW/giphy.gif)
 
 ## Usage
