@@ -31,8 +31,7 @@ When first start, PhoneByCountryPickerView automatically initialized default pho
             /*called before the user going to select a country from the countries list...*/
             @Override
             public void onUserStartPickCountry(){
-                mPhoneNumber.setText("");
-                mCountry.setText("");
+               // do something...
             }
 
             /**
@@ -42,9 +41,7 @@ When first start, PhoneByCountryPickerView automatically initialized default pho
              */
             @Override
             public void onUserPickedCountry(String phone, String countryCode) {
-                mMainLayout.requestFocus();
-                mCountry.setText(getCountry(countryCode));
-                mPhoneNumber.setText(phone);
+                // do something...
             }
         });
 ```
