@@ -67,14 +67,23 @@ When first start, PhoneByCountryPickerView automatically initialized default pho
 **Gradle**<br />
 
 ```
+
       dependencies {
-            
+           compile 'com.github.stasoption:countrypickerview:1.0.1' 
       }
+      
 ```
 
 **Maven**<br />
 
 ```
+
+    <dependency>
+        <groupId>com.github.stasoption</groupId>
+        <artifactId>countrypickerview</artifactId>
+        <version>1.0.1</version>
+        <type>pom</type>
+     </dependency>
 
 ```
 
