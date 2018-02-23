@@ -16,7 +16,7 @@ When first start, PhoneByCountryPickerView automatically initialized default pho
 
 **In your XML file**<br />
 
-```
+```xml
     <com.stasoption.countrypicker.View.CountryPickerView
         android:id="@+id/countryPickerView"
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@ When first start, PhoneByCountryPickerView automatically initialized default pho
 
 **In your activity**<br />
 
-```
+```java
         CountryPickerView countryPickerView = findViewById(R.id.countryPickerView);
         countryPickerView.setOnGettingPhoneNumberListener(new CountryPickerView.OnPhoneNumberPickListener() {
             /*called before the user going to select a country from the countries list...*/
@@ -48,7 +48,7 @@ When first start, PhoneByCountryPickerView automatically initialized default pho
 
 **Custom parameters**<br />
 
-```
+```xml
     <com.stasoption.countrypicker.View.CountryPickerView
         android:id="@+id/countryPickerView"
         android:layout_width="match_parent"
