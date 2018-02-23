@@ -75,19 +75,6 @@ When first start, PhoneByCountryPickerView automatically initialized default pho
       
 ```
 
-**Maven**<br />
-
-```
-
-    <dependency>
-        <groupId>com.github.stasoption</groupId>
-        <artifactId>countrypickerview</artifactId>
-        <version>1.0.1</version>
-        <type>pom</type>
-     </dependency>
-
-```
-
 ## License
 
       The MIT License (MIT)
